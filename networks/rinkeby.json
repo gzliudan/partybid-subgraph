@@ -1,0 +1,10 @@
+{
+  "chain": "rinkeby",
+  "partyBidFactory": "0x57518ACE6F876B0B27b78fbB34542A90a0f2d34c",
+  "partyBidLogic": "0x4D776c0325986e372a7B0793F40262Db296254e6",
+  "marketWrappers": {
+    "foundation": "0x568164299c01e56c0De0bD0554FFD15CA32F9eb2",
+    "zora": "0x755057a1E90604CD63425D93A4e1445c5773065F",
+    "nouns": "0xc24ec0CD7F9892C30b864B36b2b219ceCD8885B7"
+  }
+}

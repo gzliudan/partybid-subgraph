@@ -1,0 +1,55 @@
+specVersion: 0.0.2
+description: partybid
+repository: https://github.com/gzliudan/partybid-subgraph
+schema:
+    file: ./schema.graphql
+dataSources:
+    - kind: ethereum/contract
+      name: PartyBidFactory
+      network: {{chain}}
+      source:
+          address: '{{partyBidFactory}}'
+          abi: PartyBidFactory
+          # startBlock: 13289000
+      mapping:
+          kind: ethereum/events
+          apiVersion: 0.0.5
+          language: wasm/assemblyscript
+          entities:
+              - User
+              - Party
+          abis:
+              - name: PartyBidFactory
+                file: ./abis/PartyBidFactory.json
+          eventHandlers:
+              - event: PartyBidDeployed(address,address,address,uint256,address,uint256,address,uint256,string,string)
+                handler: handlePartyBidDeployed
+          file: ./src/partyBidFactory.ts
+templates:
+    - name: PartyBid
+      kind: ethereum/contract
+      network: {{chain}}
+      source:
+          abi: PartyBid
+          # startBlock: 13289000
+      mapping:
+          kind: ethereum/events
+          apiVersion: 0.0.5
+          language: wasm/assemblyscript
+          file: ./src/partyBid.ts
+          entities:
+              - Contribution
+              - Bid
+              - Claim
+          abis:
+              - name: PartyBid
+                file: ./abis/PartyBid.json
+          eventHandlers:
+              - event: Contributed(indexed address,uint256,uint256,uint256)
+                handler: handleContributed
+              - event: Bid(uint256)
+                handler: handleBid
+              - event: Finalized(uint8,uint256,uint256,uint256)
+                handler: handleFinalized
+              - event: Claimed(indexed address,uint256,uint256,uint256)
+                handler: handleClaimed

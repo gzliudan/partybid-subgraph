@@ -1,0 +1,58 @@
+enum PartyStatus {
+    AUCTION_ACTIVE
+    AUCTION_WON
+    AUCTION_LOST
+}
+
+type User @entity {
+    id: ID! # address of user
+    ownedContracts: [Party!]! @derivedFrom(field: "creator") # created contracts
+    bids: [Bid!]! @derivedFrom(field: "bider")
+    contributions: [Contribution!]! @derivedFrom(field: "contributor")
+    claims: [Claim!]! @derivedFrom(field: "contributor")
+}
+
+type Party @entity {
+    id: ID! # contract address of PartyBid
+    creator: User!
+    nftContract: Bytes!
+    tokenId: BigInt!
+    marketWrapper: Bytes!
+    auctionId: BigInt!
+    splitRecipient: Bytes!
+    splitBasisPoints: BigInt!
+    name: String!
+    symbol: String!
+    partyStatus: PartyStatus!
+    totalSpent: BigInt!
+    partyDAOEthFee: BigInt!
+    totalContributed: BigInt!
+    contributions: [Contribution!]! @derivedFrom(field: "party")
+    bids: [Bid!]! @derivedFrom(field: "party")
+    claims: [Claim!]! @derivedFrom(field: "party")
+}
+
+type Contribution @entity {
+    id: ID! # hash of transaction
+    party: Party!
+    contributor: User!
+    amount: BigInt!
+    previousTotalContributedToParty: BigInt!
+    totalFromContributor: BigInt!
+}
+
+type Bid @entity {
+    id: ID! # hash of transaction
+    party: Party!
+    bider: User!
+    amount: BigInt!
+}
+
+type Claim @entity {
+    id: ID! # hash of transaction
+    party: Party!
+    contributor: User!
+    totalContributed: BigInt!
+    excessContribution: BigInt!
+    tokenAmount: BigInt!
+}

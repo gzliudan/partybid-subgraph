@@ -1,0 +1,58 @@
+{
+  "name": "partybid-subgraph",
+  "license": "MIT",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gzliudan/partybid-subgraph"
+  },
+  "keywords": [
+    "Subgraph",
+    "Typescript",
+    "GraphQL",
+    "PartyBid",
+    "Solidity",
+    "Ethereum",
+    "Smart Contract",
+    "NFT",
+    "Crowdfunding"
+  ],
+  "author": "Daniel Liu",
+  "bugs": {
+    "url": "https://github.com/gzliudan/partybid-subgraph/issues",
+    "email": "liudaniel@qq.com"
+  },
+  "homepage": "https://github.com/gzliudan/partybid-subgraph",
+  "scripts": {
+    "clean": "rm -rf build/ generated/",
+    "prepare:local": "mustache networks/local.json subgraph.template.yaml subgraph.local.yaml",
+    "prepare:rinkeby": "mustache networks/rinkeby.json subgraph.template.yaml subgraph.rinkeby.yaml",
+    "prepare:mainnet": "mustache networks/mainnet.json subgraph.template.yaml subgraph.mainnet.yaml",
+    "codegen:local": "graph codegen --output-dir generated subgraph.local.yaml",
+    "codegen:rinkeby": "graph codegen --output-dir generated subgraph.rinkeby.yaml",
+    "codegen:mainnet": "graph codegen --output-dir generated subgraph.mainnet.yaml",
+    "deploy:local": "graph deploy --node http://127.0.0.1:8020 --ipfs http://localhost:5001 gzliudan/local-partybid-v2 subgraph.local.yaml",
+    "deploy:rinkeby": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ gzliudan/rinkeby-partybid-v2 subgraph.rinkeby.yaml",
+    "deploy:mainnet": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ gzliudan/partybid-v2 subgraph.mainnet.yaml",
+    "create:local": "graph create --node http://127.0.0.1:8020 gzliudan/local-partybid-v2 subgraph.local.yaml",
+    "remove:local": "graph remove --node http://127.0.0.1:8020 gzliudan/local-partybid-v2 subgraph.local.yaml",
+    "codegen": "graph codegen",
+    "build": "graph build",
+    "create": "graph create --node https://api.thegraph.com/deploy/ gzliudan/partybid-v2",
+    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ gzliudan/partybid-v2"
+  },
+  "devDependencies": {
+    "@graphprotocol/graph-cli": "^0.22.0",
+    "@graphprotocol/graph-ts": "^0.22.0",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.26.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "mustache": "^4.2.0",
+    "prettier": "^2.4.1"
+  }
+}

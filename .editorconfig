@@ -1,0 +1,24 @@
+# Editor configuration, see http://editorconfig.org
+
+# top-most EditorConfig file
+root = true
+
+[*]
+charset = utf-8
+indent_style = space
+tab_width = 4
+indent_size = 4
+max_line_length = 160
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[*.md]
+max_line_length = off
+trim_trailing_whitespace = false
+
+[Makefile]
+indent_style = tab
+
+[{package.json,.travis.yml}]
+indent_size = 2

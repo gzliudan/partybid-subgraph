@@ -1,0 +1,28 @@
+bin/
+
+# npm
+npm-debug.log
+
+# yarn
+yarn-debug.log
+yarn-error.log
+
+# graph codegen
+generated/
+
+# Build
+build/
+
+# Dependency directories
+node_modules/
+
+# .env
+.env
+.env.local
+.env.dev
+.env.prod
+
+# subgraph
+subgraph.yaml
+subgraph.rinkeby.yaml
+subgraph.mainnet.yaml
