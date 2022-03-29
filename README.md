@@ -39,7 +39,7 @@ rm -rf ./data
 
 #### 1.4 Deploy subgraph:
 
--   Enter direcory: `cd cd partybid-subgraph`
+-   Enter direcory: `cd partybid-subgraph`
 -   Deploy: `yarn clean && yarn prepare:local && graph codegen:local && yarn create:local && yarn deploy:local`
 
 ### 2. Deploy to the Graph's hosted service
